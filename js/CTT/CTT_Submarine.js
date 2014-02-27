@@ -1,7 +1,5 @@
 var CTT_Submarine = function(){
 	var $scope = this;
-	window.document.onkeydown = function(e){
-	}
 	// texture
 	var manager = new THREE.LoadingManager();
 	manager.onProgress = function ( item, loaded, total ) {
@@ -67,7 +65,20 @@ var CTT_Submarine = function(){
 	
 	console.log("HERE",$scope.propellor);
 	this.sin_i = 0;
-	//return Submarine;
+	$scope.initListeners();
+	this.controlSub = true;
+}
+CTT_Submarine.prototype.initListeners = function(){
+	window.document.onkeydown = function(e){
+		if (window.event.keyCode == 17){
+			window.controlSub = true;
+		}
+	}
+	window.document.onkeyup = function(e){
+		if (window.event.keyCode == 17){
+			window.controlSub = false;
+		}
+	}
 }
 CTT_Submarine.prototype.mesh = function(){
 	return this.Submarine;
