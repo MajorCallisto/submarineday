@@ -1,5 +1,7 @@
 var CTT_Submarine = function(){
 	var $scope = this;
+	window.document.onkeydown = function(e){
+	}
 	// texture
 	var manager = new THREE.LoadingManager();
 	manager.onProgress = function ( item, loaded, total ) {
