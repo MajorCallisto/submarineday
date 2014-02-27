@@ -25,6 +25,12 @@ var CTT_Submarine = function(){
 		} );
 
 		Submarine.add( object );//add a mesh with geometry to it
+		
+		
+      // directional lighting
+      var directionalLight = new THREE.DirectionalLight(0x111111);
+      directionalLight.position.set(1, 1, 1).normalize();
+      Submarine.add(directionalLight);
 
 	} );
 	var loader = new THREE.OBJLoader( manager );

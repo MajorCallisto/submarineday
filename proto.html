@@ -66,11 +66,15 @@
 			
 			var submarine;
 			
+			var plane_vertices_y = new Array(worldWidth-1);
 			init();
 			animate();
-
 			function init() {
-
+				/*
+				for (var i =0 ; i < worldWidth - 1; i ++){
+					plane_vertices_y.push(worldDepth - 1);
+				}
+				*/
 				container = document.getElementById( 'container' );
 
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -79,7 +83,7 @@
 				controls.movementSpeed = 150;
 				controls.lookSpeed = 0.1;
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x5fa5d8, 0.001 );
+				//scene.fog = new THREE.FogExp2( 0x5fa5d8, 0.0025 );
 
 				data = generateHeight( worldWidth, worldDepth );
 
@@ -89,11 +93,11 @@
 				geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 
 				for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
-
 					geometry.vertices[ i ].y = data[ i ] * 10;
-
+					//plane_vertices_y[] = 
+					//console.log(geometry.vertices[ i ].x, geometry.vertices[ i ].y);
 				}
-
+				console.log(geometry.vertices[0].x, geometry.vertices[0].z);
 				texture = new THREE.Texture( generateTexture( data, worldWidth, worldDepth ), new THREE.UVMapping(), THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping );
 				texture.needsUpdate = true;
 
@@ -117,10 +121,6 @@
 				
 				initializeSwimController();
 				
-      // directional lighting
-      var directionalLight = new THREE.DirectionalLight(0x111111);
-      directionalLight.position.set(1, 1, 1).normalize();
-      scene.add(directionalLight);
 	  
 				submarine = new CTT_Submarine();
 				scene.add(submarine.model());
@@ -148,32 +148,19 @@
 			}
 
 			function generateHeight( width, height ) {
-
 				var size = width * height, data = new Float32Array( size ),
 				perlin = new ImprovedNoise(), quality = 1, z = Math.random() * 5;
-
 				for ( var i = 0; i < size; i ++ ) {
-
 					data[ i ] = 0
-
 				}
-
 				for ( var j = 0; j < 4; j ++ ) {
-
 					for ( var i = 0; i < size; i ++ ) {
-
 						var x = i % width, y = ~~ ( i / width );
 						data[ i ] += Math.abs( perlin.noise( x / quality, y / quality, z ) * quality * 1.75 );
-
-
 					}
-
 					quality *= 5;
-
 				}
-
 				return data;
-
 			}
 
 			function generateTexture( data, width, height ) {
