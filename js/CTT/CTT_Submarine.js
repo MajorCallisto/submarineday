@@ -6,8 +6,8 @@ var CTT_Submarine = function(){
 		console.log("Loading Manager", item, loaded, total );
 	};
 
-	var yellowMat= new THREE.MeshPhongMaterial( { color: 0xAAAA00, shading: THREE.SmoothShading , vertexColors: THREE.VertexColors } );
-	var redMat = new THREE.MeshPhongMaterial( { color: 0xAA0000, shading: THREE.SmoothShading , vertexColors: THREE.VertexColors } );
+	var yellowMat= new THREE.MeshPhongMaterial( { specular:0xEEEE00, color: 0xAAAA00, shading: THREE.SmoothShading , vertexColors: THREE.VertexColors } );
+	var redMat = new THREE.MeshPhongMaterial( {specular:0xEE0000, color: 0xAA0000, shading: THREE.SmoothShading , vertexColors: THREE.VertexColors } );
 
 	// model
 	

@@ -79,7 +79,7 @@
 				controls.movementSpeed = 150;
 				controls.lookSpeed = 0.1;
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x5fa5d8, 0.0005 );
+				scene.fog = new THREE.FogExp2( 0x5fa5d8, 0.001 );
 
 				data = generateHeight( worldWidth, worldDepth );
 
@@ -117,8 +117,11 @@
 				
 				initializeSwimController();
 				
-				var ambient = new THREE.AmbientLight( 0x101030 );
-				scene.add( ambient );
+      // directional lighting
+      var directionalLight = new THREE.DirectionalLight(0x111111);
+      directionalLight.position.set(1, 1, 1).normalize();
+      scene.add(directionalLight);
+	  
 				submarine = new CTT_Submarine();
 				scene.add(submarine.model());
 			}
