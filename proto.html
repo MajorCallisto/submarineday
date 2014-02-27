@@ -34,8 +34,6 @@
 		<script src="http://js.leapmotion.com/0.2.0/leap.min.js"></script>
 		<script src="lib/three.min.js"></script>
 
-		<script src="js/controls/FirstPersonControls.js"></script>
-
 		<script src="js/ImprovedNoise.js"></script>
 		<script src="js/leapswim.js"></script>
 
@@ -43,6 +41,7 @@
 		<script src="js/libs/stats.min.js"></script>
 		
 		<script src="js/CTT/CTT_Submarine.js"></script>
+		<script src="js/CTT/CTT_SwimControls.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
 
 		<script>
@@ -76,7 +75,7 @@
 
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
 
-				controls = new THREE.FirstPersonControls( camera );
+				controls = new CTT_SwimControls( camera );
 				controls.movementSpeed = 150;
 				controls.lookSpeed = 0.1;
 				scene = new THREE.Scene();
@@ -121,7 +120,6 @@
 				var ambient = new THREE.AmbientLight( 0x101030 );
 				scene.add( ambient );
 				submarine = new CTT_Submarine();
-				
 				scene.add(submarine.model());
 			}
 			
